@@ -1,6 +1,10 @@
 ﻿using BCrypt.Net;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.IdentityModel.Tokens;
+using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
+using System.Text;
 using User_API.Models;
 
 namespace User_API.Controllers
@@ -10,6 +14,11 @@ namespace User_API.Controllers
 	public class AuthController : ControllerBase
 	{
 		public static User user = new User();
+		private IConfiguration _configuration;
+
+		public AuthController(IConfiguration _configuration) {
+			this._configuration = _configuration;
+		}
 
 		[HttpPost("register")]
 		public ActionResult<User> Register(UserDto request)
@@ -34,8 +43,30 @@ namespace User_API.Controllers
 			if(!BCrypt.Net.BCrypt.Verify(request.Password, user.PasswordHash)) {
 				return BadRequest("Wrong password");
 			}
+			string token = CreateToken(user);
+			return Ok(token);
+		}
 
-			return Ok(user);
+		private string CreateToken(User user)
+		{
+			List<Claim> claims = new List<Claim>
+			{
+				new Claim(ClaimTypes.Name, user.Username)
+			};
+
+			var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(
+				_configuration.GetSection("AppSettings:Token").Value!));
+			var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256Signature);
+
+			var token = new JwtSecurityToken(
+					claims: claims,
+					expires: DateTime.Now.AddDays(1),
+					signingCredentials: creds
+				);
+
+			var jwt = new JwtSecurityTokenHandler().WriteToken(token);
+
+			return jwt;
 		}
 	}
 }

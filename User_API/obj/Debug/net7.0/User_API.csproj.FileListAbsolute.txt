@@ -32,3 +32,8 @@ C:\Users\white\Documents\PROJECT\web\DOTNET\ASP\User_API\User_API\obj\Debug\net7
 C:\Users\white\Documents\PROJECT\web\DOTNET\ASP\User_API\User_API\obj\Debug\net7.0\User_API.pdb
 C:\Users\white\Documents\PROJECT\web\DOTNET\ASP\User_API\User_API\obj\Debug\net7.0\User_API.genruntimeconfig.cache
 C:\Users\white\Documents\PROJECT\web\DOTNET\ASP\User_API\User_API\obj\Debug\net7.0\ref\User_API.dll
+C:\Users\white\Documents\PROJECT\web\DOTNET\ASP\User_API\User_API\bin\Debug\net7.0\Microsoft.IdentityModel.Abstractions.dll
+C:\Users\white\Documents\PROJECT\web\DOTNET\ASP\User_API\User_API\bin\Debug\net7.0\Microsoft.IdentityModel.JsonWebTokens.dll
+C:\Users\white\Documents\PROJECT\web\DOTNET\ASP\User_API\User_API\bin\Debug\net7.0\Microsoft.IdentityModel.Logging.dll
+C:\Users\white\Documents\PROJECT\web\DOTNET\ASP\User_API\User_API\bin\Debug\net7.0\Microsoft.IdentityModel.Tokens.dll
+C:\Users\white\Documents\PROJECT\web\DOTNET\ASP\User_API\User_API\bin\Debug\net7.0\System.IdentityModel.Tokens.Jwt.dll
